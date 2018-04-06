@@ -17,14 +17,18 @@ class NewVisitorTest(unittest.TestCase):
 
   def test_ericervin_dot_org_destiny(self):
     self.browser.get('http://ericervin.org/destiny')
+    #self.browser.get('http://localhost/destiny')
     self.assertIn('Destiny', self.browser.title)
 
-    #add a properly sized header
+    header_text = self.browser.find_element_by_tag_name('h1').text
+    self.assertIn('Star Wars Destiny', header_text)
 
   def test_ericervin_dot_org_destiny_cards(self):
     self.browser.get('http://ericervin.org/destiny/cards?')
     self.assertIn('Destiny', self.browser.title)
 
+    #give table an id
+    
     #add code that counts rows in table.
     #maybe compare with output in ericervin_dot_com
 
