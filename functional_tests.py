@@ -52,6 +52,14 @@ class NewVisitorTest(unittest.TestCase):
     header_text = self.browser.find_element_by_tag_name('h1').text
     self.assertIn('Eric Ervin Dot Com', header_text)
 
+  def test_ericervin_dot_com_destiny(self):
+    #self.browser.get('http://ericervin.com/destiny')
+    self.browser.get('http://localhost/destiny')
+    self.assertIn('Destiny', self.browser.title)
+
+    header_text = self.browser.find_element_by_tag_name('h1').text
+    self.assertIn('Star Wars Destiny', header_text)
+    
   def test_ericcervin_dot_github_dot_io(self):
     self.browser.get('http://ericcervin.github.io')
     self.assertIn('ericcervin.github.io', self.browser.title)
