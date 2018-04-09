@@ -53,12 +53,23 @@ class NewVisitorTest(unittest.TestCase):
     self.assertIn('Eric Ervin Dot Com', header_text)
 
   def test_ericervin_dot_com_destiny(self):
-    #self.browser.get('http://ericervin.com/destiny')
-    self.browser.get('http://localhost/destiny')
+    self.browser.get('http://ericervin.com/destiny')
+    #self.browser.get('http://localhost/destiny')
     self.assertIn('Destiny', self.browser.title)
 
     header_text = self.browser.find_element_by_tag_name('h1').text
     self.assertIn('Star Wars Destiny', header_text)
+    
+  def test_ericervin_dot_com_destiny_cards(self):
+    self.browser.get('http://ericervin.com/destiny/cards?')
+    #self.browser.get('http://localhost/destiny/cards?')
+    self.assertIn('Destiny', self.browser.title)
+
+    table = self.browser.find_element_by_id('id_card_table')
+    rows = table.find_elements_by_tag_name('tr')
+    #print(len(rows))
+    #add code that counts rows in table.
+    #maybe compare with output count from ericervin_dot_org
     
   def test_ericcervin_dot_github_dot_io(self):
     self.browser.get('http://ericcervin.github.io')
