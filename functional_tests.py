@@ -1,7 +1,7 @@
 from selenium import webdriver
 import unittest
 
-class NewVisitorTest(unittest.TestCase):
+class AllEricErvinSitesFirefoxTest(unittest.TestCase):
   def setUp(self):
       self.browser = webdriver.Firefox()
 
@@ -9,6 +9,12 @@ class NewVisitorTest(unittest.TestCase):
       self.browser.quit()
   
   def test_ericervin_dot_org(self):
+    #refactor so stem of url is here. other lines build on that.
+
+    self.browser.get('http://ericervin.org/robots.txt')
+    #self.assertIn('User-agent: *\nDisallow: /', self.browser.page_source)
+    
+    
     self.browser.get('http://ericervin.org')
     self.assertIn('Eric Ervin Dot Org', self.browser.title)
 
@@ -46,6 +52,11 @@ class NewVisitorTest(unittest.TestCase):
     #then add Keys input for field and submit
     
   def test_ericervin_dot_com(self):
+    #refactor so stem of url is here. other lines build on that.
+
+    self.browser.get('http://ericervin.com/robots.txt')
+    #self.assertIn('User-agent: *\nDisallow: /', self.browser.page_source)
+    
     self.browser.get('http://ericervin.com')
     self.assertIn('Eric Ervin Dot Com', self.browser.title)
 
@@ -72,13 +83,24 @@ class NewVisitorTest(unittest.TestCase):
     #maybe compare with output count from ericervin_dot_org
     
   def test_ericcervin_dot_github_dot_io(self):
+    #refactor so stem of url is here. other lines build on that.
+
+    self.browser.get('http://ericcervin.github.io/robots.txt')
+    self.assertIn('User-agent: *\nDisallow: /', self.browser.page_source)
+    
     self.browser.get('http://ericcervin.github.io')
     self.assertIn('ericcervin.github.io', self.browser.title)
 
   def test_noiselife_dot_org(self):
+    #refactor so stem of url is here. other lines build on that.
+
+    self.browser.get('http://noiselife.org/robots.txt')
+    self.assertIn('User-agent: *\nDisallow: /', self.browser.page_source)
+
     self.browser.get('http://noiselife.org')
     self.assertIn('noiselife-dot-org', self.browser.title)
 
+    
 
 if __name__ == '__main__':
     unittest.main()
