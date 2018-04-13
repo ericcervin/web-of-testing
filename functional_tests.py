@@ -9,13 +9,14 @@ class AllEricErvinSitesFirefoxTest(unittest.TestCase):
       self.browser.quit()
   
   def test_ericervin_dot_org(self):
-    #refactor so stem of url is here. other lines build on that.
-
-    self.browser.get('http://ericervin.org/robots.txt')
-    #self.assertIn('User-agent: *\nDisallow: /', self.browser.page_source)
+    url = 'http://ericervin.org'
+    #url = 'http://localhost'
+     
+    self.browser.get(url + '/robots.txt')
+    self.assertIn('User-agent: *\nDisallow: /', self.browser.page_source)
     
     
-    self.browser.get('http://ericervin.org')
+    self.browser.get(url)
     self.assertIn('Eric Ervin Dot Org', self.browser.title)
 
     header_text = self.browser.find_element_by_tag_name('h1').text
