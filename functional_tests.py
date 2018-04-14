@@ -1,6 +1,23 @@
 from selenium import webdriver
 import unittest
 
+allSites = ['http://ericervin.org','http://ericervin.com','http://ericcervin.github.io','http://noiselife.org']
+
+class AllSitesTestForRobots(unittest.TestCase):
+  
+  def setUp(self):
+      self.browser = webdriver.Firefox()
+
+  def tearDown(self):
+      self.browser.quit()
+
+  def test_for_robots(self):
+    for site in allSites:
+        self.browser.get(site + '/robots.txt')
+        self.assertIn('User-agent: *\nDisallow: /', self.browser.page_source)
+
+    
+    
 class AllEricErvinSitesFirefoxTest(unittest.TestCase):
   def setUp(self):
       self.browser = webdriver.Firefox()
@@ -11,10 +28,6 @@ class AllEricErvinSitesFirefoxTest(unittest.TestCase):
   def test_ericervin_dot_org(self):
     url = 'http://ericervin.org'
     #url = 'http://localhost'
-     
-    self.browser.get(url + '/robots.txt')
-    self.assertIn('User-agent: *\nDisallow: /', self.browser.page_source)
-    
     
     self.browser.get(url)
     self.assertIn('Eric Ervin Dot Org', self.browser.title)
@@ -55,8 +68,7 @@ class AllEricErvinSitesFirefoxTest(unittest.TestCase):
   def test_ericervin_dot_com(self):
     #refactor so stem of url is here. other lines build on that.
 
-    self.browser.get('http://ericervin.com/robots.txt')
-    #self.assertIn('User-agent: *\nDisallow: /', self.browser.page_source)
+    
     
     self.browser.get('http://ericervin.com')
     self.assertIn('Eric Ervin Dot Com', self.browser.title)
@@ -85,18 +97,12 @@ class AllEricErvinSitesFirefoxTest(unittest.TestCase):
     
   def test_ericcervin_dot_github_dot_io(self):
     #refactor so stem of url is here. other lines build on that.
-
-    self.browser.get('http://ericcervin.github.io/robots.txt')
-    self.assertIn('User-agent: *\nDisallow: /', self.browser.page_source)
     
     self.browser.get('http://ericcervin.github.io')
     self.assertIn('ericcervin.github.io', self.browser.title)
 
   def test_noiselife_dot_org(self):
     #refactor so stem of url is here. other lines build on that.
-
-    self.browser.get('http://noiselife.org/robots.txt')
-    self.assertIn('User-agent: *\nDisallow: /', self.browser.page_source)
 
     self.browser.get('http://noiselife.org')
     self.assertIn('noiselife-dot-org', self.browser.title)
