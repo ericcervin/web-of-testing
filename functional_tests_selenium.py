@@ -1,7 +1,12 @@
+#save 404 check for requests version where you can get status code
+
 from selenium import webdriver
 import unittest
 
-allSites = ['http://ericervin.org','http://ericervin.com','http://ericcervin.github.io','http://noiselife.org']
+allSites = ['http://ericervin.org',
+            'http://ericervin.com',
+            'http://ericcervin.github.io',
+            'http://noiselife.org']
 
 class AllSitesTestForRobots(unittest.TestCase):
   
@@ -15,15 +20,35 @@ class AllSitesTestForRobots(unittest.TestCase):
     for site in allSites:
         self.browser.get(site + '/robots.txt')
         self.assertIn('User-agent: *\nDisallow: /', self.browser.page_source)
-
-    
-    
+   
 class AllEricErvinSitesFirefoxTest(unittest.TestCase):
   def setUp(self):
       self.browser = webdriver.Firefox()
 
   def tearDown(self):
       self.browser.quit()
+
+  def test_destiny_cards(self):
+    url = 'http://ericervin.org/destiny/cards?'
+    #url = 'http://localhost/destiny/cards?'
+    self.browser.get(url)
+    self.assertIn('Destiny', self.browser.title)
+
+    table = self.browser.find_element_by_id('id_card_table')
+    rows = table.find_elements_by_tag_name('tr')
+    global org_destiny_cards_count
+    org_destiny_cards_count = len(rows)
+
+    url = 'http://ericervin.com/destiny/cards?'
+    #url = 'http://localhost/destiny/cards?'
+    self.browser.get(url)
+    self.assertIn('Destiny', self.browser.title)
+
+    table = self.browser.find_element_by_id('id_card_table')
+    rows = table.find_elements_by_tag_name('tr')
+    global com_destiny_cards_count
+    com_destiny_cards_count = len(rows)
+    self.assertEqual(org_destiny_cards_count,com_destiny_cards_count)
   
   def test_ericervin_dot_org(self):
     url = 'http://ericervin.org'
@@ -36,28 +61,19 @@ class AllEricErvinSitesFirefoxTest(unittest.TestCase):
     self.assertIn('Eric Ervin Dot Org', header_text)
 
   def test_ericervin_dot_org_destiny(self):
-    self.browser.get('http://ericervin.org/destiny')
-    #self.browser.get('http://localhost/destiny')
+    url = "http://ericervin.org/destiny"
+    #url = 'http://localhost/destiny'
+    self.browser.get(url)
     self.assertIn('Destiny', self.browser.title)
 
     header_text = self.browser.find_element_by_tag_name('h1').text
     self.assertIn('Star Wars Destiny', header_text)
 
-  def test_ericervin_dot_org_destiny_cards(self):
-    self.browser.get('http://ericervin.org/destiny/cards?')
-    #self.browser.get('http://localhost/destiny/cards?')
-    self.assertIn('Destiny', self.browser.title)
-
-    table = self.browser.find_element_by_id('id_card_table')
-    rows = table.find_elements_by_tag_name('tr')
-    #print(len(rows))
-    #add code that counts rows in table.
-    #maybe compare with output count from ericervin_dot_com
-
-  
+ 
     
   def test_ericervin_dot_org_gematria(self):
-    self.browser.get('http://ericervin.org/gematria')
+    url = 'http://ericervin.org/gematria'
+    self.browser.get(url)
     #add a proper title
 
     #add a properly sized header
@@ -66,45 +82,33 @@ class AllEricErvinSitesFirefoxTest(unittest.TestCase):
     #then add Keys input for field and submit
     
   def test_ericervin_dot_com(self):
-    #refactor so stem of url is here. other lines build on that.
+    url = 'http://ericervin.com'
 
-    
-    
-    self.browser.get('http://ericervin.com')
+    self.browser.get(url)
     self.assertIn('Eric Ervin Dot Com', self.browser.title)
 
     header_text = self.browser.find_element_by_tag_name('h1').text
     self.assertIn('Eric Ervin Dot Com', header_text)
 
   def test_ericervin_dot_com_destiny(self):
-    self.browser.get('http://ericervin.com/destiny')
-    #self.browser.get('http://localhost/destiny')
+    url = 'http://ericervin.com/destiny'
+    #url = http://localhost/destiny'
+    self.browser.get(url)
     self.assertIn('Destiny', self.browser.title)
 
     header_text = self.browser.find_element_by_tag_name('h1').text
     self.assertIn('Star Wars Destiny', header_text)
     
-  def test_ericervin_dot_com_destiny_cards(self):
-    self.browser.get('http://ericervin.com/destiny/cards?')
-    #self.browser.get('http://localhost/destiny/cards?')
-    self.assertIn('Destiny', self.browser.title)
-
-    table = self.browser.find_element_by_id('id_card_table')
-    rows = table.find_elements_by_tag_name('tr')
-    #print(len(rows))
-    #add code that counts rows in table.
-    #maybe compare with output count from ericervin_dot_org
+  
     
   def test_ericcervin_dot_github_dot_io(self):
-    #refactor so stem of url is here. other lines build on that.
-    
-    self.browser.get('http://ericcervin.github.io')
+    url = 'http://ericcervin.github.io'
+    self.browser.get(url)
     self.assertIn('ericcervin.github.io', self.browser.title)
 
   def test_noiselife_dot_org(self):
-    #refactor so stem of url is here. other lines build on that.
-
-    self.browser.get('http://noiselife.org')
+    url = 'http://noiselife.org'
+    self.browser.get(url)
     self.assertIn('noiselife-dot-org', self.browser.title)
 
     
