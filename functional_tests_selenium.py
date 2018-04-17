@@ -36,7 +36,6 @@ class AllEricErvinSitesFirefoxTest(unittest.TestCase):
 
     table = self.browser.find_element_by_id('id_card_table')
     rows = table.find_elements_by_tag_name('tr')
-    global org_destiny_cards_count
     org_destiny_cards_count = len(rows)
 
     url = 'http://ericervin.com/destiny/cards?'
@@ -46,7 +45,6 @@ class AllEricErvinSitesFirefoxTest(unittest.TestCase):
 
     table = self.browser.find_element_by_id('id_card_table')
     rows = table.find_elements_by_tag_name('tr')
-    global com_destiny_cards_count
     com_destiny_cards_count = len(rows)
     self.assertEqual(org_destiny_cards_count,com_destiny_cards_count)
   
@@ -73,13 +71,21 @@ class AllEricErvinSitesFirefoxTest(unittest.TestCase):
     
   def test_ericervin_dot_org_gematria(self):
     url = 'http://ericervin.org/gematria'
+    #url = 'http://localhost/gematria'
     self.browser.get(url)
-    #add a proper title
+    self.assertIn('Gematria', self.browser.title)
 
-    #add a properly sized header
+    header_text = self.browser.find_element_by_tag_name('h1').text
+    self.assertIn('Gematria', header_text)
 
-    #give input fields proper ids that you can find
-    #then add Keys input for field and submit
+    inputbox1 = self.browser.find_element_by_id('id_word_input')
+    self.assertEqual(inputbox1.get_attribute('name'),'word')
+
+    inputbox2 = self.browser.find_element_by_id('id_value_input')
+    self.assertEqual(inputbox2.get_attribute('name'),'value')
+
+    
+    #then add Keys input for fields and submit
     
   def test_ericervin_dot_com(self):
     url = 'http://ericervin.com'
