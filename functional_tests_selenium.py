@@ -22,6 +22,22 @@ class AllSitesTestForRobots(unittest.TestCase):
     for site in allSites:
         self.browser.get(site + '/robots.txt')
         self.assertIn('User-agent: *\nDisallow: /', self.browser.page_source)
+
+class AllSitesTestFor404(unittest.TestCase):
+  
+  def setUp(self):
+      self.browser = webdriver.Firefox()
+
+  def tearDown(self):
+      self.browser.quit()
+
+  def test_for_robots(self):
+    for site in allSites:
+      if site != 'http://ericcervin.github.io':
+        self.browser.get(site + '/platypus')
+
+        self.assertIn('Error 404 Not Found', self.browser.title)
+        self.assertIn('<body>404 - Not Found', self.browser.page_source)
    
 class AllEricErvinSitesFirefoxTest(unittest.TestCase):
   def setUp(self):
