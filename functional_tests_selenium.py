@@ -6,7 +6,9 @@ import unittest
 allSites = ['http://ericervin.org',
             'http://ericervin.com',
             'http://ericcervin.github.io',
-            'http://noiselife.org']
+            'http://noiselife.org',
+            'http://127.0.0.1:5000' #new AskFlapp site
+            ]
 
 class AllSitesTestForRobots(unittest.TestCase):
   
