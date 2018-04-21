@@ -65,7 +65,16 @@ class AllEricErvinSitesFirefoxTest(unittest.TestCase):
     rows = table.find_elements_by_tag_name('tr')
     com_destiny_cards_count = len(rows)
     self.assertEqual(org_destiny_cards_count,com_destiny_cards_count)
-  
+
+  def test_ask_flapp(self):
+    url = 'http://localhost:5000/'
+
+    self.browser.get(url)
+    self.assertIn('Eric Ervin Dot Com', self.browser.title)
+
+    header_text = self.browser.find_element_by_tag_name('h1').text
+    self.assertIn('Eric Ervin Dot Com', header_text)
+    
   def test_ericervin_dot_org(self):
     url = 'http://ericervin.org'
     #url = 'http://localhost'
