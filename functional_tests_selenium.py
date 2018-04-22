@@ -1,4 +1,4 @@
-#save 404 check for requests version where you can get status code
+#add 404 check in requests version where you can get status code
 
 from selenium import webdriver
 import unittest
@@ -74,6 +74,14 @@ class AllEricErvinSitesFirefoxTest(unittest.TestCase):
 
     header_text = self.browser.find_element_by_tag_name('h1').text
     self.assertIn('Eric Ervin Dot Com', header_text)
+
+  def test_ask_flapp_destiny(self):
+    url = "http://localhost:5000/destiny"
+    self.browser.get(url)
+    self.assertIn('Destiny', self.browser.title)
+
+    header_text = self.browser.find_element_by_tag_name('h1').text
+    self.assertIn('Star Wars Destiny', header_text)
     
   def test_ericervin_dot_org(self):
     url = 'http://ericervin.org'
