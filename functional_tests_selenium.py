@@ -47,24 +47,21 @@ class AllEricErvinSitesFirefoxTest(unittest.TestCase):
       self.browser.quit()
 
   def test_destiny_cards(self):
-    url = 'http://ericervin.org/destiny/cards?'
-    #url = 'http://localhost/destiny/cards?'
-    self.browser.get(url)
-    self.assertIn('Destiny', self.browser.title)
+      counts = []
+      urls = ['http://ericervin.org/destiny/cards?',
+              'http://ericervin.com/destiny/cards?',
+              'http://localhost:5000/destiny/cards?']
 
-    table = self.browser.find_element_by_id('id_card_table')
-    rows = table.find_elements_by_tag_name('tr')
-    org_destiny_cards_count = len(rows)
+      for u in urls:
+          self.browser.get(u)
+          self.assertIn('Destiny', self.browser.title)
+          table = self.browser.find_element_by_id('id_card_table')
+          rows = table.find_elements_by_tag_name('tr')
+          counts.append(len(rows))
 
-    url = 'http://ericervin.com/destiny/cards?'
-    #url = 'http://localhost/destiny/cards?'
-    self.browser.get(url)
-    self.assertIn('Destiny', self.browser.title)
-
-    table = self.browser.find_element_by_id('id_card_table')
-    rows = table.find_elements_by_tag_name('tr')
-    com_destiny_cards_count = len(rows)
-    self.assertEqual(org_destiny_cards_count,com_destiny_cards_count)
+      self.assertEqual(counts[0],counts[1])
+      self.assertEqual(counts[1],counts[2])
+      
 
   def test_ask_flapp(self):
     url = 'http://localhost:5000/'
