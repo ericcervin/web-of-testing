@@ -7,7 +7,6 @@ allSites = ['http://ericervin.org',
             'http://ericervin.com',
             'http://ericcervin.github.io',
             'http://noiselife.org',
-            'http://127.0.0.1:5000' #new AskFlapp site
             ]
 
 class AllSitesTestForRobots(unittest.TestCase):
@@ -49,8 +48,7 @@ class AllEricErvinSitesFirefoxTest(unittest.TestCase):
   def test_destiny_cards(self):
       counts = []
       urls = ['http://ericervin.org/destiny/cards?',
-              'http://ericervin.com/destiny/cards?',
-              'http://localhost:5000/destiny/cards?']
+              'http://ericervin.com/destiny/cards?']
 
       for u in urls:
           self.browser.get(u)
@@ -60,26 +58,8 @@ class AllEricErvinSitesFirefoxTest(unittest.TestCase):
           counts.append(len(rows))
 
       self.assertEqual(counts[0],counts[1])
-      self.assertEqual(counts[1],counts[2])
       
 
-  def test_ask_flapp(self):
-    url = 'http://localhost:5000/'
-
-    self.browser.get(url)
-    self.assertIn('Eric Ervin Dot Com', self.browser.title)
-
-    header_text = self.browser.find_element_by_tag_name('h1').text
-    self.assertIn('Eric Ervin Dot Com', header_text)
-
-  def test_ask_flapp_destiny(self):
-    url = "http://localhost:5000/destiny"
-    self.browser.get(url)
-    self.assertIn('Destiny', self.browser.title)
-
-    header_text = self.browser.find_element_by_tag_name('h1').text
-    self.assertIn('Star Wars Destiny', header_text)
-    
   def test_ericervin_dot_org(self):
     url = 'http://ericervin.org'
     #url = 'http://localhost'
