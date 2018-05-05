@@ -89,7 +89,6 @@ class AllEricErvinSitesFirefoxTest(unittest.TestCase):
     
   def test_ericervin_dot_org_gematria(self):
     url = 'http://ericervin.org/gematria'
-    #url = 'http://localhost/gematria'
     self.browser.get(url)
     self.assertIn('Gematria', self.browser.title)
 
@@ -102,8 +101,18 @@ class AllEricErvinSitesFirefoxTest(unittest.TestCase):
     inputbox2 = self.browser.find_element_by_id('id_value_input')
     self.assertEqual(inputbox2.get_attribute('name'),'value')
 
-    
     #then add Keys input for fields and submit
+    
+  def test_ericervin_dot_org_philosophy(self):
+    url = "http://ericervin.org/philosophy"
+    self.browser.get(url)
+    self.assertIn('Philosophy USA', self.browser.title)
+
+    header_text = self.browser.find_element_by_tag_name('h1').text
+    self.assertIn('Philosophy USA', header_text) 
+
+    
+    
     
   def test_ericervin_dot_com(self):
     url = 'http://ericervin.com'
