@@ -111,7 +111,13 @@ class AllEricErvinSitesFirefoxTest(unittest.TestCase):
     header_text = self.browser.find_element_by_tag_name('h1').text
     self.assertIn('Philosophy USA', header_text) 
 
-    
+  def test_ericervin_dot_org_powerball(self):
+    url = "http://ericervin.org/powerball"
+    self.browser.get(url)
+    self.assertIn('Powerball', self.browser.title)
+
+    header_text = self.browser.find_element_by_tag_name('h1').text
+    self.assertIn('Powerball', header_text)     
     
     
   def test_ericervin_dot_com(self):
