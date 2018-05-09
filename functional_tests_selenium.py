@@ -153,6 +153,14 @@ class AllEricErvinSitesFirefoxTest(unittest.TestCase):
 
     header_text = self.browser.find_element_by_tag_name('h1').text
     self.assertIn('Powerball', header_text)
+
+  def test_ericervin_dot_com_serialism(self):
+    url = "http://ericervin.com/serialism"
+    self.browser.get(url)
+    self.assertIn('Serialism', self.browser.title)
+
+    header_text = self.browser.find_element_by_tag_name('h1').text
+    self.assertIn('Serialism', header_text)
     
   def test_ericcervin_dot_github_dot_io(self):
     url = 'http://ericcervin.github.io'
