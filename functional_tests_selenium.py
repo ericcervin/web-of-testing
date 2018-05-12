@@ -58,6 +58,20 @@ class AllEricErvinSitesFirefoxTest(unittest.TestCase):
           counts.append(len(rows))
 
       self.assertEqual(counts[0],counts[1])
+
+  def test_discogs_releases(self):
+      counts = []
+      urls = ['http://www.ericervin.org/discogs/releases?',
+              'http://www.ericervin.com/discogs/releases?']
+
+      for u in urls:
+          self.browser.get(u)
+          self.assertIn('Discogs', self.browser.title)
+          table = self.browser.find_element_by_id('id_releases_table')
+          rows = table.find_elements_by_tag_name('tr')
+          counts.append(len(rows))
+
+      self.assertEqual(counts[0],counts[1])
       
 
   def test_ericervin_dot_org(self):
