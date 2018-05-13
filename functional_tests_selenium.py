@@ -76,7 +76,7 @@ class AllEricErvinSitesFirefoxTest(unittest.TestCase):
   def test_discogs_reports(self):
       counts = []
       urls = ['http://www.ericervin.org/discogs/reports?rpt=artist_count',
-              'http://www.ericervin.com/discogs/reports?rpt=artist_count']
+              'http://www.ericervin.com/discogs/reports/artist_count']
 
       for u in urls:
           self.browser.get(u)
@@ -181,6 +181,22 @@ class AllEricErvinSitesFirefoxTest(unittest.TestCase):
 
     header_text = self.browser.find_element_by_tag_name('h1').text
     self.assertIn('My Record Collection', header_text)
+
+  def test_ericervin_dot_com_gematria(self):
+    url = 'http://ericervin.com/gematria'
+    self.browser.get(url)
+    self.assertIn('Gematria', self.browser.title)
+
+    header_text = self.browser.find_element_by_tag_name('h1').text
+    self.assertIn('Gematria', header_text)
+
+    inputbox1 = self.browser.find_element_by_id('id_word_input')
+    self.assertEqual(inputbox1.get_attribute('name'),'word')
+
+    inputbox2 = self.browser.find_element_by_id('id_value_input')
+    self.assertEqual(inputbox2.get_attribute('name'),'value')
+
+    #then add Keys input for fields and submit
     
   def test_ericervin_dot_com_powerball(self):
     url = "http://ericervin.com/powerball"
