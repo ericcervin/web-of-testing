@@ -86,7 +86,31 @@ class AllEricErvinSitesFirefoxTest(unittest.TestCase):
           counts.append(len(rows))
 
       self.assertEqual(counts[0],counts[1])
+
+
+  def test_gematria_words(self):
+      self.browser.get('http://www.ericervin.org/gematria/word?word=eric')
+      self.assertIn('Gematria', self.browser.title)
+
+      org_word_value_table = self.browser.find_element_by_id('id_word_value_table')
+      org_word_value_text = org_word_value_table.text
       
+      org_other_word_table = self.browser.find_element_by_id('id_other_word_table')
+      org_other_word_rows = table.find_elements_by_tag_name('tr')
+      org_other_word_rows_count = len(org_other_word_rows)
+      
+      self.browser.get('http://www.ericervin.com/gematria/word?word=eric')
+      self.assertIn('Gematria', self.browser.title)
+
+      com_word_value_table = self.browser.find_element_by_id('id_word_value_table')
+      com_word_value_text = com_word_value_table.text
+      
+      com_other_word_table = self.browser.find_element_by_id('id_other_word_table')
+      com_other_word_rows = table.find_elements_by_tag_name('tr')
+      com_other_word_rows_count = len(com_other_word_rows)
+
+      self.assertEqual(org_other_word_rows_count,com_other_word_rows_count)
+
 
   def test_ericervin_dot_org(self):
     url = 'http://ericervin.org'
@@ -130,6 +154,8 @@ class AllEricErvinSitesFirefoxTest(unittest.TestCase):
     self.assertEqual(inputbox2.get_attribute('name'),'value')
 
     #then add Keys input for fields and submit
+
+    
     
   def test_ericervin_dot_org_philosophy(self):
     url = "http://ericervin.org/philosophy"
