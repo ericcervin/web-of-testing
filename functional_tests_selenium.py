@@ -96,7 +96,7 @@ class AllEricErvinSitesFirefoxTest(unittest.TestCase):
       org_word_value_text = org_word_value_table.text
       
       org_other_word_table = self.browser.find_element_by_id('id_other_word_table')
-      org_other_word_rows = table.find_elements_by_tag_name('tr')
+      org_other_word_rows = org_other_word_table.find_elements_by_tag_name('tr')
       org_other_word_rows_count = len(org_other_word_rows)
       
       self.browser.get('http://www.ericervin.com/gematria/word?word=eric')
@@ -106,10 +106,28 @@ class AllEricErvinSitesFirefoxTest(unittest.TestCase):
       com_word_value_text = com_word_value_table.text
       
       com_other_word_table = self.browser.find_element_by_id('id_other_word_table')
-      com_other_word_rows = table.find_elements_by_tag_name('tr')
+      com_other_word_rows = com_other_word_table.find_elements_by_tag_name('tr')
       com_other_word_rows_count = len(com_other_word_rows)
 
       self.assertEqual(org_other_word_rows_count,com_other_word_rows_count)
+      self.assertEqual(org_word_value_text,com_word_value_text)
+
+  def test_gematria_values(self):
+      self.browser.get('http://www.ericervin.org/gematria/value?value=65')
+      self.assertIn('Gematria', self.browser.title)
+      
+      org_word_table = self.browser.find_element_by_id('id_word_value_table')
+      org_word_rows = org_other_word_table.find_elements_by_tag_name('tr')
+      org_word_rows_count = len(org_other_word_rows)
+      
+      self.browser.get('http://www.ericervin.com/gematria/value?value=65')
+      self.assertIn('Gematria', self.browser.title)
+      
+      com_word_table = self.browser.find_element_by_id('id_other_word_table')
+      com_word_rows = com_other_word_table.find_elements_by_tag_name('tr')
+      com_word_rows_count = len(com_other_word_rows)
+
+      self.assertEqual(org_word_rows_count,com_word_rows_count)
 
 
   def test_ericervin_dot_org(self):
