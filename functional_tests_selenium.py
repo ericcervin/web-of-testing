@@ -117,15 +117,15 @@ class AllEricErvinSitesFirefoxTest(unittest.TestCase):
       self.assertIn('Gematria', self.browser.title)
       
       org_word_table = self.browser.find_element_by_id('id_word_value_table')
-      org_word_rows = org_other_word_table.find_elements_by_tag_name('tr')
-      org_word_rows_count = len(org_other_word_rows)
+      org_word_rows = org_word_table.find_elements_by_tag_name('tr')
+      org_word_rows_count = len(org_word_rows)
       
       self.browser.get('http://www.ericervin.com/gematria/value?value=65')
       self.assertIn('Gematria', self.browser.title)
       
-      com_word_table = self.browser.find_element_by_id('id_other_word_table')
-      com_word_rows = com_other_word_table.find_elements_by_tag_name('tr')
-      com_word_rows_count = len(com_other_word_rows)
+      com_word_table = self.browser.find_element_by_id('id_word_value_table')
+      com_word_rows = com_word_table.find_elements_by_tag_name('tr')
+      com_word_rows_count = len(com_word_rows)
 
       self.assertEqual(org_word_rows_count,com_word_rows_count)
 
@@ -242,6 +242,14 @@ class AllEricErvinSitesFirefoxTest(unittest.TestCase):
 
     #then add Keys input for fields and submit
     
+  def test_ericervin_dot_com_philosophy(self):
+    url = "http://ericervin.com/philosophy"
+    self.browser.get(url)
+    self.assertIn('Philosophy USA', self.browser.title)
+
+    header_text = self.browser.find_element_by_tag_name('h1').text
+    self.assertIn('Philosophy USA', header_text) 
+
   def test_ericervin_dot_com_powerball(self):
     url = "http://ericervin.com/powerball"
     self.browser.get(url)
