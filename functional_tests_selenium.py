@@ -129,6 +129,20 @@ class AllEricErvinSitesFirefoxTest(unittest.TestCase):
 
       self.assertEqual(org_word_rows_count,com_word_rows_count)
 
+  def test_philosophy_reports(self):
+      self.browser.get('http://ericervin.org/philosophy/reports?rpt=inst_count')
+      self.assertIn('Philosophy USA', self.browser.title)
+
+      org_result_table = self.browser.find_element_by_id('id_result_table')
+      org_result_table_text = org_result_table.text
+      
+      self.browser.get('http://ericervin.com/philosophy/reports/inst_count')
+      self.assertIn('Philosophy USA', self.browser.title)
+
+      com_result_table = self.browser.find_element_by_id('id_result_table')
+      com_result_table_text = com_result_table.text
+
+      self.assertEqual(org_result_table_text,com_result_table_text)
 
   def test_ericervin_dot_org(self):
     url = 'http://ericervin.org'
