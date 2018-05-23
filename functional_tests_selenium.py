@@ -46,18 +46,17 @@ class AllEricErvinSitesFirefoxTest(unittest.TestCase):
       self.browser.quit()
 
   def test_destiny_cards(self):
-      counts = []
-      urls = ['http://ericervin.org/destiny/cards?',
-              'http://ericervin.com/destiny/cards?']
+      self.browser.get('http://ericervin.org/destiny/cards?')
+      self.assertIn('Destiny', self.browser.title)
+      org_card_table = self.browser.find_element_by_id('id_card_table')
+      org_card_table_text = org_card_table.text
+      
+      self.browser.get('http://ericervin.com/destiny/cards?')
+      self.assertIn('Destiny', self.browser.title)
+      com_card_table = self.browser.find_element_by_id('id_card_table')
+      com_card_table_text = com_card_table.text
 
-      for u in urls:
-          self.browser.get(u)
-          self.assertIn('Destiny', self.browser.title)
-          table = self.browser.find_element_by_id('id_card_table')
-          rows = table.find_elements_by_tag_name('tr')
-          counts.append(len(rows))
-
-      self.assertEqual(counts[0],counts[1])
+      self.assertEqual(org_card_table_text,com_card_table_text)
 
   def test_discogs_releases(self):
       counts = []
