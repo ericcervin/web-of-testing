@@ -74,7 +74,7 @@ class AllEricErvinSitesFirefoxTest(unittest.TestCase):
 
   def test_discogs_reports(self):
       counts = []
-      urls = ['http://www.ericervin.org/discogs/reports?rpt=artist_count',
+      urls = ['http://www.ericervin.org/discogs/reports/artist_count',
               'http://www.ericervin.com/discogs/reports/artist_count']
 
       for u in urls:
