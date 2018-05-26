@@ -120,6 +120,22 @@ class AllEricErvinSitesFirefoxTest(unittest.TestCase):
 
       self.assertEqual(counts[0],counts[1])
 
+  def test_gematria(self):
+    urls = ["http://ericervin.org/gematria", "http://ericervin.com/gematria"]
+    for url in urls:
+        self.browser.get(url)
+        self.assertIn('Gematria', self.browser.title)
+
+        header_text = self.browser.find_element_by_tag_name('h1').text
+        self.assertIn('Gematria', header_text)
+
+        inputbox1 = self.browser.find_element_by_id('id_word_input')
+        self.assertEqual(inputbox1.get_attribute('name'),'word')
+
+        inputbox2 = self.browser.find_element_by_id('id_value_input')
+        self.assertEqual(inputbox2.get_attribute('name'),'value')
+        
+        #then add Keys input for fields and submit
 
   def test_gematria_words(self):
       self.browser.get('http://www.ericervin.org/gematria/word?word=eric')
@@ -187,22 +203,6 @@ class AllEricErvinSitesFirefoxTest(unittest.TestCase):
     header_text = self.browser.find_element_by_tag_name('h1').text
     self.assertIn('Eric Ervin Dot Org', header_text)
 
-    
-  def test_ericervin_dot_org_gematria(self):
-    url = 'http://ericervin.org/gematria'
-    self.browser.get(url)
-    self.assertIn('Gematria', self.browser.title)
-
-    header_text = self.browser.find_element_by_tag_name('h1').text
-    self.assertIn('Gematria', header_text)
-
-    inputbox1 = self.browser.find_element_by_id('id_word_input')
-    self.assertEqual(inputbox1.get_attribute('name'),'word')
-
-    inputbox2 = self.browser.find_element_by_id('id_value_input')
-    self.assertEqual(inputbox2.get_attribute('name'),'value')
-
-    #then add Keys input for fields and submit
 
     
     
@@ -240,25 +240,6 @@ class AllEricErvinSitesFirefoxTest(unittest.TestCase):
     header_text = self.browser.find_element_by_tag_name('h1').text
     self.assertIn('Eric Ervin Dot Com', header_text)
 
-
-
-  
-
-  def test_ericervin_dot_com_gematria(self):
-    url = 'http://ericervin.com/gematria'
-    self.browser.get(url)
-    self.assertIn('Gematria', self.browser.title)
-
-    header_text = self.browser.find_element_by_tag_name('h1').text
-    self.assertIn('Gematria', header_text)
-
-    inputbox1 = self.browser.find_element_by_id('id_word_input')
-    self.assertEqual(inputbox1.get_attribute('name'),'word')
-
-    inputbox2 = self.browser.find_element_by_id('id_value_input')
-    self.assertEqual(inputbox2.get_attribute('name'),'value')
-
-    #then add Keys input for fields and submit
     
   def test_ericervin_dot_com_philosophy(self):
     url = "http://ericervin.com/philosophy"
