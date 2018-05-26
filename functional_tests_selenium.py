@@ -46,7 +46,7 @@ class AllEricErvinSitesFirefoxTest(unittest.TestCase):
       self.browser.quit()
 
   def test_destiny(self):
-    urls = ["http://ericervin.org/destiny", "http://ericervin.org/destiny"]
+    urls = ["http://ericervin.org/destiny", "http://ericervin.com/destiny"]
     for url in urls:
         self.browser.get(url)
         self.assertIn('Destiny', self.browser.title)
@@ -82,7 +82,16 @@ class AllEricErvinSitesFirefoxTest(unittest.TestCase):
 
       self.assertEqual(org_result_table_text,com_result_table_text)
 
+  def test_discogs(self):
+    urls = ["http://ericervin.org/discogs", "http://ericervin.com/discogs"]
+    for url in urls:
+        self.browser.get(url)
+        self.assertIn('Discogs', self.browser.title)
 
+        header_text = self.browser.find_element_by_tag_name('h1').text
+        self.assertIn('My Record Collection', header_text)
+        
+  
   def test_discogs_releases(self):
       counts = []
       urls = ['http://www.ericervin.org/discogs/releases?',
@@ -178,15 +187,6 @@ class AllEricErvinSitesFirefoxTest(unittest.TestCase):
     header_text = self.browser.find_element_by_tag_name('h1').text
     self.assertIn('Eric Ervin Dot Org', header_text)
 
-  
-
-  def test_ericervin_dot_org_discogs(self):
-    url = "http://ericervin.org/discogs"
-    self.browser.get(url)
-    self.assertIn('Discogs', self.browser.title)
-
-    header_text = self.browser.find_element_by_tag_name('h1').text
-    self.assertIn('My Record Collection', header_text) 
     
   def test_ericervin_dot_org_gematria(self):
     url = 'http://ericervin.org/gematria'
@@ -242,13 +242,7 @@ class AllEricErvinSitesFirefoxTest(unittest.TestCase):
 
 
 
-  def test_ericervin_dot_com_discogs(self):
-    url = "http://ericervin.com/discogs"
-    self.browser.get(url)
-    self.assertIn('Discogs', self.browser.title)
-
-    header_text = self.browser.find_element_by_tag_name('h1').text
-    self.assertIn('My Record Collection', header_text)
+  
 
   def test_ericervin_dot_com_gematria(self):
     url = 'http://ericervin.com/gematria'
