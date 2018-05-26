@@ -45,6 +45,15 @@ class AllEricErvinSitesFirefoxTest(unittest.TestCase):
   def tearDown(self):
       self.browser.quit()
 
+  def test_destiny(self):
+    urls = ["http://ericervin.org/destiny", "http://ericervin.org/destiny"]
+    for url in urls:
+        self.browser.get(url)
+        self.assertIn('Destiny', self.browser.title)
+
+        header_text = self.browser.find_element_by_tag_name('h1').text
+        self.assertIn('Star Wars Destiny', header_text)
+    
   def test_destiny_cards(self):
       self.browser.get('http://ericervin.org/destiny/cards?')
       self.assertIn('Destiny', self.browser.title)
@@ -153,14 +162,7 @@ class AllEricErvinSitesFirefoxTest(unittest.TestCase):
     header_text = self.browser.find_element_by_tag_name('h1').text
     self.assertIn('Eric Ervin Dot Org', header_text)
 
-  def test_ericervin_dot_org_destiny(self):
-    url = "http://ericervin.org/destiny"
-    #url = 'http://localhost/destiny'
-    self.browser.get(url)
-    self.assertIn('Destiny', self.browser.title)
-
-    header_text = self.browser.find_element_by_tag_name('h1').text
-    self.assertIn('Star Wars Destiny', header_text)
+  
 
   def test_ericervin_dot_org_discogs(self):
     url = "http://ericervin.org/discogs"
@@ -222,14 +224,7 @@ class AllEricErvinSitesFirefoxTest(unittest.TestCase):
     header_text = self.browser.find_element_by_tag_name('h1').text
     self.assertIn('Eric Ervin Dot Com', header_text)
 
-  def test_ericervin_dot_com_destiny(self):
-    url = 'http://ericervin.com/destiny'
-    #url = http://localhost/destiny'
-    self.browser.get(url)
-    self.assertIn('Destiny', self.browser.title)
 
-    header_text = self.browser.find_element_by_tag_name('h1').text
-    self.assertIn('Star Wars Destiny', header_text)
 
   def test_ericervin_dot_com_discogs(self):
     url = "http://ericervin.com/discogs"
