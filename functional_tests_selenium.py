@@ -67,6 +67,22 @@ class AllEricErvinSitesFirefoxTest(unittest.TestCase):
 
       self.assertEqual(org_card_table_text,com_card_table_text)
 
+  def test_destiny_reports(self):
+      self.browser.get('http://ericervin.org/destiny/reports?rpt=rarity_count')
+      self.assertIn('Destiny', self.browser.title)
+
+      org_result_table = self.browser.find_element_by_id('id_card_table')
+      org_result_table_text = org_result_table.text
+      
+      self.browser.get('http://www.ericervin.com/destiny/reports/rarity_count')
+      self.assertIn('Destiny', self.browser.title)
+
+      com_result_table = self.browser.find_element_by_id('id_card_table')
+      com_result_table_text = com_result_table.text
+
+      self.assertEqual(org_result_table_text,com_result_table_text)
+
+
   def test_discogs_releases(self):
       counts = []
       urls = ['http://www.ericervin.org/discogs/releases?',
