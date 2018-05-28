@@ -214,6 +214,16 @@ class AllEricErvinSitesFirefoxTest(unittest.TestCase):
         header_text = self.browser.find_element_by_tag_name('h1').text
         self.assertIn('Powerball', header_text)
 
+  def test_serialism(self):
+    urls = ["http://ericervin.org/serialism", "http://ericervin.com/serialism"]
+    for url in urls:
+        self.browser.get(url)
+        self.assertIn('Serialism', self.browser.title)
+
+        header_text = self.browser.find_element_by_tag_name('h1').text
+        self.assertIn('Serialism', header_text)
+
+
   def test_ericervin_dot_org(self):
     url = 'http://ericervin.org'
     #url = 'http://localhost'
@@ -223,16 +233,6 @@ class AllEricErvinSitesFirefoxTest(unittest.TestCase):
 
     header_text = self.browser.find_element_by_tag_name('h1').text
     self.assertIn('Eric Ervin Dot Org', header_text)
-
-    
-  def test_ericervin_dot_org_serialism(self):
-    url = "http://ericervin.org/serialism"
-    self.browser.get(url)
-    self.assertIn('Serialism', self.browser.title)
-
-    header_text = self.browser.find_element_by_tag_name('h1').text
-    self.assertIn('Serialism', header_text)
-    
     
   def test_ericervin_dot_com(self):
     url = 'http://ericervin.com'
@@ -242,15 +242,6 @@ class AllEricErvinSitesFirefoxTest(unittest.TestCase):
 
     header_text = self.browser.find_element_by_tag_name('h1').text
     self.assertIn('Eric Ervin Dot Com', header_text)
-
-
-  def test_ericervin_dot_com_serialism(self):
-    url = "http://ericervin.com/serialism"
-    self.browser.get(url)
-    self.assertIn('Serialism', self.browser.title)
-
-    header_text = self.browser.find_element_by_tag_name('h1').text
-    self.assertIn('Serialism', header_text)
     
   def test_ericcervin_dot_github_dot_io(self):
     url = 'http://ericcervin.github.io'
