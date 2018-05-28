@@ -68,7 +68,7 @@ class AllEricErvinSitesFirefoxTest(unittest.TestCase):
       self.assertEqual(org_card_table_text,com_card_table_text)
 
   def test_destiny_reports(self):
-      self.browser.get('http://ericervin.org/destiny/reports?rpt=rarity_count')
+      self.browser.get('http://ericervin.org/destiny/reports/rarity_count')
       self.assertIn('Destiny', self.browser.title)
 
       org_result_table = self.browser.find_element_by_id('id_card_table')
