@@ -178,6 +178,17 @@ class AllEricErvinSitesFirefoxTest(unittest.TestCase):
 
       self.assertEqual(org_word_rows_count,com_word_rows_count)
 
+  
+
+  def test_philosophy(self):
+    urls = ["http://ericervin.org/philosophy", "http://ericervin.com/philosophy"]
+    for url in urls:
+        self.browser.get(url)
+        self.assertIn('Philosophy USA', self.browser.title)
+
+        header_text = self.browser.find_element_by_tag_name('h1').text
+        self.assertIn('Philosophy USA', header_text)
+
   def test_philosophy_reports(self):
       self.browser.get('http://ericervin.org/philosophy/reports?rpt=inst_count')
       self.assertIn('Philosophy USA', self.browser.title)
@@ -192,7 +203,7 @@ class AllEricErvinSitesFirefoxTest(unittest.TestCase):
       com_result_table_text = com_result_table.text
 
       self.assertEqual(org_result_table_text,com_result_table_text)
-
+    
   def test_ericervin_dot_org(self):
     url = 'http://ericervin.org'
     #url = 'http://localhost'
@@ -203,16 +214,10 @@ class AllEricErvinSitesFirefoxTest(unittest.TestCase):
     header_text = self.browser.find_element_by_tag_name('h1').text
     self.assertIn('Eric Ervin Dot Org', header_text)
 
+ 
+
 
     
-    
-  def test_ericervin_dot_org_philosophy(self):
-    url = "http://ericervin.org/philosophy"
-    self.browser.get(url)
-    self.assertIn('Philosophy USA', self.browser.title)
-
-    header_text = self.browser.find_element_by_tag_name('h1').text
-    self.assertIn('Philosophy USA', header_text) 
 
   def test_ericervin_dot_org_powerball(self):
     url = "http://ericervin.org/powerball"
@@ -241,13 +246,7 @@ class AllEricErvinSitesFirefoxTest(unittest.TestCase):
     self.assertIn('Eric Ervin Dot Com', header_text)
 
     
-  def test_ericervin_dot_com_philosophy(self):
-    url = "http://ericervin.com/philosophy"
-    self.browser.get(url)
-    self.assertIn('Philosophy USA', self.browser.title)
 
-    header_text = self.browser.find_element_by_tag_name('h1').text
-    self.assertIn('Philosophy USA', header_text) 
 
   def test_ericervin_dot_com_powerball(self):
     url = "http://ericervin.com/powerball"
