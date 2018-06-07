@@ -137,8 +137,8 @@ class AllEricErvinSitesFirefoxTest(unittest.TestCase):
         
         #then add Keys input for fields and submit
 
-  def test_gematria_words(self):
-      self.browser.get('http://www.ericervin.org/gematria/word/eric')
+  def test_gematria_search_word(self):
+      self.browser.get('http://www.ericervin.org/gematria/search?word=word')
       self.assertIn('Gematria', self.browser.title)
 
       org_word_value_table = self.browser.find_element_by_id('id_word_value_table')
@@ -148,7 +148,7 @@ class AllEricErvinSitesFirefoxTest(unittest.TestCase):
       org_other_word_rows = org_other_word_table.find_elements_by_tag_name('tr')
       org_other_word_rows_count = len(org_other_word_rows)
       
-      self.browser.get('http://www.ericervin.com/gematria/word/eric')
+      self.browser.get('http://www.ericervin.com/gematria/search?word=word')
       self.assertIn('Gematria', self.browser.title)
 
       com_word_value_table = self.browser.find_element_by_id('id_word_value_table')
