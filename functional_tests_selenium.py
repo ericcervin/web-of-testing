@@ -161,15 +161,15 @@ class AllEricErvinSitesFirefoxTest(unittest.TestCase):
       self.assertEqual(org_other_word_rows_count,com_other_word_rows_count)
       self.assertEqual(org_word_value_text,com_word_value_text)
 
-  def test_gematria_values(self):
-      self.browser.get('http://www.ericervin.org/gematria/value?value=65')
+  def test_gematria_search_value(self):
+      self.browser.get('http://www.ericervin.org/gematria/search?value=65')
       self.assertIn('Gematria', self.browser.title)
       
       org_word_table = self.browser.find_element_by_id('id_word_value_table')
       org_word_rows = org_word_table.find_elements_by_tag_name('tr')
       org_word_rows_count = len(org_word_rows)
       
-      self.browser.get('http://www.ericervin.com/gematria/value?value=65')
+      self.browser.get('http://www.ericervin.com/gematria/search?value=65')
       self.assertIn('Gematria', self.browser.title)
       
       com_word_table = self.browser.find_element_by_id('id_word_value_table')
@@ -179,7 +179,6 @@ class AllEricErvinSitesFirefoxTest(unittest.TestCase):
       self.assertEqual(org_word_rows_count,com_word_rows_count)
 
   
-
   def test_philosophy(self):
     urls = ["http://ericervin.org/philosophy", "http://ericervin.com/philosophy"]
     for url in urls:
