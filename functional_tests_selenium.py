@@ -30,7 +30,7 @@ class AllSitesTestFor404(unittest.TestCase):
   def tearDown(self):
       self.browser.quit()
 
-  def test_for_robots(self):
+  def test_for_404(self):
     for site in allSites:
       if site != 'http://ericcervin.github.io':
         self.browser.get(site + '/platypus')
