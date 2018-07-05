@@ -166,7 +166,7 @@ class AllEricErvinSitesTest(unittest.TestCase):
   
   def test_philosophy_reports(self):
       texts = []
-      urls = ['http://ericervin.org/philosophy/reports?rpt=inst_count',
+      urls = ['http://ericervin.org/philosophy/reports/inst_count',
              'http://ericervin.com/philosophy/reports/inst_count']
       for url in urls:
         page = requests.get(url)
