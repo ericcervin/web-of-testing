@@ -42,14 +42,14 @@ class AllEricErvinSitesTest(unittest.TestCase):
       page = requests.get('http://ericervin.org/destiny/cards?')
       soup = BeautifulSoup(page.text,'html.parser')
       self.assertEqual(page.status_code,200)
-      self.assertIn('Destiny', soup.find_all('title')[0])
+      self.assertIn('  Cards', soup.find_all('title')[0])
 
       org_card_table = soup.find_all(id='id_card_table')[0]
 
       page = requests.get('http://ericervin.com/destiny/cards?')
       soup = BeautifulSoup(page.text,'html.parser')
       self.assertEqual(page.status_code,200)
-      self.assertIn('Destiny', soup.find_all('title')[0])
+      self.assertIn('  Cards', soup.find_all('title')[0])
 
       com_card_table = soup.find_all(id='id_card_table')[0]
       
@@ -59,14 +59,14 @@ class AllEricErvinSitesTest(unittest.TestCase):
       page = requests.get('http://ericervin.org/destiny/reports/rarity_count')
       soup = BeautifulSoup(page.text,'html.parser')
       self.assertEqual(page.status_code,200)
-      self.assertIn('Destiny', soup.find_all('title')[0])
+      self.assertIn('Count by Rarity', soup.find_all('title')[0])
 
       org_result_table = soup.find_all(id='id_card_table')[0]
 
       page = requests.get('http://ericervin.com/destiny/reports/rarity_count')
       soup = BeautifulSoup(page.text,'html.parser')
       self.assertEqual(page.status_code,200)
-      self.assertIn('Destiny', soup.find_all('title')[0])
+      self.assertIn('Count by Rarity', soup.find_all('title')[0])
 
       com_result_table = soup.find_all(id='id_card_table')[0]
       
