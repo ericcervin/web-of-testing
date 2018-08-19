@@ -173,7 +173,7 @@ class AllEricErvinSitesTest(unittest.TestCase):
         soup = BeautifulSoup(page.text,'html.parser')
         
         self.assertEqual(page.status_code,200)
-        self.assertIn('Philosophy USA', soup.find_all('title')[0])
+        self.assertIn('Philosophy Degrees Completed by Institution', soup.find_all('title')[0])
         
         texts.append(soup.find_all(id='id_result_table')[0])
 
