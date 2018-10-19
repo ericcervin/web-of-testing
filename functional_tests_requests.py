@@ -91,7 +91,7 @@ class AllEricErvinSitesTest(unittest.TestCase):
         soup = BeautifulSoup(page.text,'html.parser')
         
         self.assertEqual(page.status_code,200)
-        self.assertIn('Releases by Artist', soup.find_all('title')[0])
+        self.assertIn('Releases by Artist,Title', soup.find_all('title')[0])
         rows = soup.find_all('td')
         counts.append(len(rows))
 
