@@ -199,6 +199,16 @@ class AllEricErvinSitesTest(unittest.TestCase):
         self.assertIn('Serialism', soup.find_all('title')[0])
         self.assertIn('Serialism', soup.find_all('h1')[0])
 
+  def test_wh_champions(self):
+    urls = ["http://ericervin.org/wh_champions", "http://ericervin.com/wh_champions"]
+    for url in urls:
+        page = requests.get(url)
+        soup = BeautifulSoup(page.text,'html.parser')
+        
+        self.assertEqual(page.status_code,200)
+        self.assertIn('Warhammer Champions', soup.find_all('title')[0])
+        self.assertIn('Warhammer Champions', soup.find_all('h1')[0])
+
   def test_ericervin_dot_org(self):
       page = requests.get('http://ericervin.org')
       soup = BeautifulSoup(page.text,'html.parser')
