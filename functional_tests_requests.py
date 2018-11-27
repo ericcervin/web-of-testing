@@ -209,6 +209,23 @@ class AllEricErvinSitesTest(unittest.TestCase):
         self.assertIn('Warhammer Champions', soup.find_all('title')[0])
         self.assertIn('Warhammer Champions', soup.find_all('h1')[0])
 
+  def test_wh_champions_cards(self):
+      page = requests.get('http://ericervin.org/wh_champions/cards?')
+      soup = BeautifulSoup(page.text,'html.parser')
+      self.assertEqual(page.status_code,200)
+      self.assertIn('  Cards', soup.find_all('title')[0])
+
+      org_card_table = soup.find_all(id='id_card_table')[0]
+
+      page = requests.get('http://ericervin.com/wh_champions/cards?')
+      soup = BeautifulSoup(page.text,'html.parser')
+      self.assertEqual(page.status_code,200)
+      self.assertIn('  Cards', soup.find_all('title')[0])
+
+      com_card_table = soup.find_all(id='id_card_table')[0]
+      
+      self.assertEqual(org_card_table,com_card_table)
+      
   def test_ericervin_dot_org(self):
       page = requests.get('http://ericervin.org')
       soup = BeautifulSoup(page.text,'html.parser')
